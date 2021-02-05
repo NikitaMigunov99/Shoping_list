@@ -1,5 +1,6 @@
 package com.example.shoppinglist
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,16 +8,15 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shoppinglist.data.Product
 
-class ProductsListAdapter(private var products: MutableList<String>) :
+class ProductsListAdapter( var products: MutableList<Product>) :
     RecyclerView.Adapter<ProductsListAdapter.ViewHolder>() {
 
 
-    var productsList= products
-
-    fun addProduct(product: String){
-        productsList.add(product)
+    fun addProduct(){
         notifyDataSetChanged()
+        Log.d("Log","Adapter addProduct() "+products.size.toString())
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,10 +35,10 @@ class ProductsListAdapter(private var products: MutableList<String>) :
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = productsList[position]
+        viewHolder.textView.text = products[position].name
     }
 
 
-    override fun getItemCount() = productsList.size
+    override fun getItemCount() = products.size
 
 }
