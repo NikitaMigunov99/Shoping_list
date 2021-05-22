@@ -17,12 +17,7 @@ class MainPresenter(lifecycleOwner: LifecycleOwner, context: Context): MvpPresen
     var adapter= ProductsListAdapter(products)
     var repository= Repository(context)
     var isDataLoaded= false
-    //var data: LiveData<List<Product>>?=null
-    val mLifecycleOwner: LifecycleOwner
-
-    init {
-        mLifecycleOwner= lifecycleOwner
-    }
+    val mLifecycleOwner: LifecycleOwner = lifecycleOwner
 
     fun addProduct(name: String){
         val product= Product(name)
@@ -47,8 +42,7 @@ class MainPresenter(lifecycleOwner: LifecycleOwner, context: Context): MvpPresen
                 adapter.notifyDataSetChanged()
             })
 
-
-            Log.d("Debug", "Repository getData() Size ")
+            Log.d("Debug", "Main Presenter getData()")
         }
     }
 }
